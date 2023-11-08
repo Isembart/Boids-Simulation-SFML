@@ -27,6 +27,7 @@ int main()
     sf::Time previousTime = clock.getElapsedTime();
     sf::Time currentTime;
     float fps;
+    bool drawQuadTree = true;
 
     auto window = sf::RenderWindow{ { 1600, 900 }, "CMake SFML Project" };
     window.setFramerateLimit(144);
@@ -49,6 +50,11 @@ int main()
             {
                 window.close();
             }
+            if(event.type == sf::Event::KeyPressed){
+                if(event.key.scancode == sf::Keyboard::Scan::Q){
+                    drawQuadTree = !drawQuadTree;
+                }
+            }
         }
 
         //insert new points on mouseClick
@@ -65,7 +71,7 @@ int main()
         }
 //////////////////////////////////////////////DRAW/////////////////////////////
         window.clear();
-        mainQT->draw(window);
+        if(drawQuadTree) mainQT->draw(window);
         ///////////////////////////////////////////Collision Check////////////////////////
         for(particlePtr obj : objects) {
             std::vector<particlePtr> others;
