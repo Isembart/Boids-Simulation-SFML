@@ -24,7 +24,6 @@ particle::particle(sf::Vector2f position, float _size)
         sprite.setScale(sf::Vector2f(0.05,0.05));
         sprite.setColor(sf::Color(255,255,255,200));
     }
-   
 }
 
 particle::~particle()
@@ -109,36 +108,52 @@ void particle::update()
     }
 }
 
-
-
 void particle::separation(std::vector<particlePtr> &objects)
 {
 	sf::Vector2f sumToAllNearBoids(0,0);
+    int validObjects = 0;
     for(auto obj : objects) {
+        if(distance(position, obj->position) > separationRange || position == obj->position){
+            continue;
+        }
         sumToAllNearBoids += getPosition() - obj->getPosition(); 
+        validObjects++;
+
     }
-    velocity += normalize(sumToAllNearBoids) * separationWeigth; 
+    if(validObjects > 0){
+        velocity += normalize(sumToAllNearBoids) * separationWeigth; 
+    }
 }
 void particle::alignment(std::vector<particlePtr> &objects)
 {
+    int validObjects = 0;
     sf::Vector2f averageVelocity(0,0);
     for(auto obj : objects) {
+       if(distance(position, obj->position) > searchRange || position == obj->position){
+            continue;
+        }
         averageVelocity += obj->getVelocity(); 
+        validObjects++;
     }
-    if(objects.size() != 0) {
-        averageVelocity = sf::Vector2f(averageVelocity.x / objects.size(), averageVelocity.y / objects.size());
-        // averageVelocity = normalize(averageVelocity);
+    if(validObjects > 0) {
+        averageVelocity = sf::Vector2f(averageVelocity.x / validObjects, averageVelocity.y / validObjects);
         velocity += averageVelocity * alignmentWeight;
     }
 }
 
 void particle::cohesion(std::vector<particlePtr> &objects) {
+    int validObjects = 0; 
     sf::Vector2f averagePosition(0,0);
     for(auto obj : objects) {
+    
+        if(distance(position, obj->position) < searchRange || position == obj->position){
+            continue;
+        }
         averagePosition += obj->getPosition();
+        validObjects++;
     }
-    if(objects.size() != 0) {
-        averagePosition = sf::Vector2f(averagePosition.x / objects.size(), averagePosition.y / objects.size());
+    if(validObjects > 0) {
+        averagePosition = sf::Vector2f(averagePosition.x / validObjects, averagePosition.y / validObjects);
         averagePosition = averagePosition - position;
         velocity += averagePosition * cohesionWeight;
     }

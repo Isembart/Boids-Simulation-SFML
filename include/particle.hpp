@@ -13,12 +13,12 @@ private:
 
     bool textureLoaded = false;
 public:
-    float separationWeigth = 0.06;
+    float separationWeigth = 0.1;
     float alignmentWeight = 0.05;
-    float cohesionWeight = 0.0005;
+    float cohesionWeight = 0.0003;
 
-    float separationRange = 10;
-    float searchRange = 40;
+    float separationRange = 20;
+    float searchRange = 60;
     
     particle(sf::Vector2f position, float size);
     ~particle();

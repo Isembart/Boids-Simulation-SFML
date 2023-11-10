@@ -12,7 +12,7 @@ const int quadTreeCapacity = 3;
 
 void randomPoints(sf::RenderWindow &window, quadTreePtr mainQT, std::vector<particlePtr> &objects){
     // random initial points
-    for (int i = 0; i < 500; i++)
+    for (int i = 0; i < 200; i++)
     {
         sf::Vector2f vec(rand()%window.getSize().x,rand()%window.getSize().y);
         particlePtr go = std::make_shared<particle>(vec,particleSize);
@@ -41,7 +41,7 @@ int main()
         //fps 
         currentTime = clock.getElapsedTime();
         fps = 1.0f / (currentTime.asSeconds() - previousTime.asSeconds()); // the asSeconds returns a float
-        std::cout << "fps =" << fps << std::endl; // flooring it will make the frame rate a rounded number
+        // std::cout << "fps =" << fps << std::endl; // flooring it will make the frame rate a rounded number
         previousTime = currentTime;
 
         for (auto event = sf::Event{}; window.pollEvent(event);)
@@ -75,12 +75,11 @@ int main()
         ///////////////////////////////////////////Collision Check////////////////////////
         for(particlePtr obj : objects) {
             std::vector<particlePtr> others;
-            mainQT->query(obj->getSeparationRect(),others);
-			obj->separation(others);
+            // mainQT->query(obj->getSeparationRect(),others);
             mainQT->query(obj->getSearchRect(), others);
+			obj->separation(others);
             obj->alignment(others);
             obj->cohesion(others);
-
             obj->update();
         }
 
