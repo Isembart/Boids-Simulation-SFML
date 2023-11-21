@@ -4,13 +4,13 @@ project(QuadTreeTest LANGUAGES CXX)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
-add_subdirectory(libs/SFML)
+
 # SET(CMAKE_CXX_FLAGS  "-pg -no-pie -O2")
 # SET(CMAKE_CXX_FLAGS  "-O3")
 
-
-#write a function to update all git submodules
 execute_process(COMMAND git submodule update --init --recursive)
+
+add_subdirectory(libs/SFML)
 
 set(SOURCE src/main.cpp src/quadTree.cpp src/gameObject.cpp src/particle.cpp src/vectorFunctions.cpp)
 
