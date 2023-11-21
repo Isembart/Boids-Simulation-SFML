@@ -1,8 +1,9 @@
-# Boids simulation including quadtrees coded in C++ and SFML
+# Boids simulation in C++
 
 ## Description
 
-Briefly describe your project and its purpose. Include key features and functionality.
+Flock simulation using boids algorithm. Coded in C++ and using SFML library for graphics.
+To optimize the algorithm I used quadtrees.
 
 ## Table of Contents
 
@@ -10,11 +11,8 @@ Briefly describe your project and its purpose. Include key features and function
 - [Contributing](#contributing)
 
 ## Installation
-
-Provide instructions on how to install and set up your project. Include any dependencies, prerequisites, or configuration steps.
-
-```bash
 # Example installation command using Unix Makefiles generator
+```bash
 git clone https://github.com/Isembart/Boids-Simulation-SFML.git
 cd Boids-Simulation-SFML
 cmake -G "Unix Makefiles" ..
