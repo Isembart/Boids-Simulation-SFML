@@ -4,6 +4,7 @@
 
 Flock simulation using boids algorithm. Coded in C++ and using SFML library for graphics.
 To optimize the algorithm I used quadtrees.
+![](https://github.com/Isembart/Boids-Simulation-SFML/blob/main/boidsGIF.gif)
 
 ## Table of Contents
 
