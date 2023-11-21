@@ -1,15 +1,16 @@
 # Boids simulation in C++
-
-## Description
-
-Flock simulation using boids algorithm. Coded in C++ and using SFML library for graphics.
-To optimize the algorithm I used quadtrees.
-![](https://github.com/Isembart/Boids-Simulation-SFML/blob/main/boidsGIF.gif)
-
 ## Table of Contents
-
+- [Description](#description)
 - [Installation](#installation)
 - [Contributing](#contributing)
+
+## Description
+Flock simulation using boids algorithm. Coded in C++ and using SFML library for graphics.
+To optimize the algorithm I used quadtrees.
+
+Here's how it looks:
+![](https://github.com/Isembart/Boids-Simulation-SFML/blob/main/boidsGIF.gif)
+
 
 ## Installation 
 Example installation command using Unix Makefiles generator
