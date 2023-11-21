@@ -11,6 +11,7 @@ set(SOURCES
     ../src/quadTree.cpp
     ../src/vectorFunctions.cpp
     gameObjectTest.cpp
+    vectorFunctionsTest.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
