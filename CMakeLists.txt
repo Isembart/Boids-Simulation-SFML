@@ -8,6 +8,10 @@ add_subdirectory(libs/SFML)
 # SET(CMAKE_CXX_FLAGS  "-pg -no-pie -O2")
 # SET(CMAKE_CXX_FLAGS  "-O3")
 
+
+#write a function to update all git submodules
+execute_process(COMMAND git submodule update --init --recursive)
+
 set(SOURCE src/main.cpp src/quadTree.cpp src/gameObject.cpp src/particle.cpp src/vectorFunctions.cpp)
 
 add_executable(QuadTreeTest ${SOURCE})
