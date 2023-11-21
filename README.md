@@ -10,8 +10,8 @@ To optimize the algorithm I used quadtrees.
 - [Installation](#installation)
 - [Contributing](#contributing)
 
-## Installation
-# Example installation command using Unix Makefiles generator
+## Installation 
+Example installation command using Unix Makefiles generator
 ```bash
 git clone https://github.com/Isembart/Boids-Simulation-SFML.git
 cd Boids-Simulation-SFML
