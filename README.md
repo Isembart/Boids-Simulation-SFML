@@ -19,7 +19,6 @@ git clone https://github.com/Isembart/Boids-Simulation-SFML.git
 cd Boids-Simulation-SFML
 cmake -G "Unix Makefiles" ..
 make
-# If you want boids to have textures you need to move "arrow.png" file from the root folder to folder with the executable
 ```
 
 ## Contributing
