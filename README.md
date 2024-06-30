@@ -17,6 +17,8 @@ Example installation command using Unix Makefiles generator
 ```bash
 git clone https://github.com/Isembart/Boids-Simulation-SFML.git
 cd Boids-Simulation-SFML
+mkdir build
+cd build
 cmake -G "Unix Makefiles" ..
 make
 ```
