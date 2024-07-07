@@ -11,12 +11,12 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: Windows VS2019, os: windows-2019  }
-        - { name: Windows VS2022, os: windows-2022  }
-        - { name: Windows MinGW, os: windows-2022  }
-        - { name: Linux GCC,      os: ubuntu-latest }
-        - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: macOS,          os: macos-latest  }
+        - { name: Windows VS2019, os: windows-2019 }
+        - { name: Windows VS2022, os: windows-2022 }
+        - { name: Windows MinGW, os: windows-2019, generator: "MinGW Makefiles" }
+        - { name: Linux GCC, os: ubuntu-latest }
+        - { name: Linux Clang, os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        - { name: macOS, os: macos-latest }
         config:
         - { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
         - { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
@@ -31,7 +31,12 @@ jobs:
 
     - name: Configure
       shell: bash
-      run: cmake -S . -B build -DCMAKE_INSTALL_PREFIX=install ${{matrix.platform.flags}} ${{matrix.config.flags}}
+      run: |
+        GENERATOR_OPTION=""
+        if [ -n "${{ matrix.platform.generator }}" ]; then
+          GENERATOR_OPTION="-G '${{ matrix.platform.generator }}'"
+        fi
+        cmake -S . -B build -DCMAKE_INSTALL_PREFIX=install $GENERATOR_OPTION ${{ matrix.platform.flags }} ${{ matrix.config.flags }}
 
     - name: Build
       shell: bash
