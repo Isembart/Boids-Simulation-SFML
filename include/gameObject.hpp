@@ -1,22 +1,29 @@
 #pragma once
-#include "SFML/Graphics.hpp"
-#include "typedefs.hpp"
+#include <SFML/Graphics.hpp>
+#include <memory>
+
+class gameObject;
+
+using gameObjectPtr = std::shared_ptr<gameObject>;
 
 class gameObject
 {
 protected:
     sf::Vector2f position;
-    float hitboxRadius = 2;
-public:
-    gameObject();
-    ~gameObject();
+    float hitboxRadius = 2.0f;
 
-    virtual sf::Vector2f getPosition(); 
+public:
+    gameObject() = default;
+    virtual ~gameObject() = default;
+
     virtual void draw(sf::RenderWindow &window);
     virtual void update();
-    virtual void setPosition(sf::Vector2f position); 
 
-    void setHitboxRadius(float range); 
-    float getHitboxRadius(); 
-    bool intersects(gameObjectPtr other);
+    sf::Vector2f getPosition() const;
+    void setPosition(const sf::Vector2f &position);
+
+    void setHitboxRadius(float range);
+    float getHitboxRadius() const;
+
+    bool intersects(gameObjectPtr other) const;
 };

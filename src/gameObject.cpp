@@ -1,32 +1,23 @@
-#include "typedefs.hpp"
 #include "gameObject.hpp"
-#include "math.h"
+#include "vectorFunctions.hpp"
+#include <cmath>
 
-gameObject::gameObject(){
-
-}
-
-gameObject::~gameObject(){
-
-}
-
-sf::Vector2f gameObject::getPosition()
+sf::Vector2f gameObject::getPosition() const
 {
     return position;
 }
 
-void gameObject::draw(sf::RenderWindow &window)
+void gameObject::draw(sf::RenderWindow & /*window*/)
 {
-    
 }
 
 void gameObject::update()
 {
 }
 
-void gameObject::setPosition(sf::Vector2f pos)
+void gameObject::setPosition(const sf::Vector2f &pos)
 {
-    position =  pos;
+    position = pos;
 }
 
 void gameObject::setHitboxRadius(float range)
@@ -34,12 +25,12 @@ void gameObject::setHitboxRadius(float range)
     hitboxRadius = range;
 }
 
-float gameObject::getHitboxRadius()
+float gameObject::getHitboxRadius() const
 {
     return hitboxRadius;
 }
 
-bool gameObject::intersects(gameObjectPtr other)
+bool gameObject::intersects(gameObjectPtr other) const
 {
-    return hitboxRadius*2 >= sqrt((other->getPosition().x - position.x)*(other->getPosition().x - position.x) + (other->getPosition().y - position.y)*(other->getPosition().y - position.y));
+    return hitboxRadius * 2.0f >= distance(other->getPosition(), position);
 }

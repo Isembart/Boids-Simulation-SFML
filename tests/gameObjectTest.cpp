@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <gtest/gtest.h>
 
-#include "typedefs.hpp"
 #include "gameObject.hpp"
 
 TEST(gameObjectTest, gettersAndSetters) {
